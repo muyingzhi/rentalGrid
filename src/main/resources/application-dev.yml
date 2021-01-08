@@ -1,0 +1,25 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口
+  port: 9099
+  servlet:
+    # 应用的访问路径
+    context-path: /grid
+# 数据源配置
+spring:
+  datasource:
+    #        driverClassName: oracle.jdbc.driver.OracleDriver
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://211.144.5.80:30112/pa?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+    username: root
+    password: passw0rd
+
+sso:
+  #  server: http://211.144.5.80:30117/tj-sso-server
+  server: http://localhost:8080/tj-sso-server
+  logout:
+    path: /palogout
+  excluded:
+    paths:
+  redis:
+    address: redis://211.144.5.80:30134       

@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active: dev
+  # 模板引擎
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: static/i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
+  application:
+    name: tj-pa
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+    view:
+      prefix: classpath:/static/**
+      suffix: .html
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.tianjian: info
+
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.tianjian
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:**/mapper/*.mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis-config.xml
+# PageHelper分页插件
+pagehelper:
+  #  helperDialect: oracle
+  helperDialect: mysql
+  #  autoRuntimeDialect=true 表示运行时获取数据源,涉及到多数据源为不同数据库设置为自动获取
+  # 在tj-security-boot-hr中有注入helperDialect，需手动去注销
+  autoRuntimeDialect: true
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
